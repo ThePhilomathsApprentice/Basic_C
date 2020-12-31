@@ -5,6 +5,36 @@
 #define ONE				1
 #define DIV_FACTOR			10
 #define MAX_SIZE			10
+#define MAX_ALLOWED_ARGS		2
+#define ARG_1_NO			1
+#define SUCCESS				0
+#define FAILURE				-1
+int checkArmstrong_No(int Number)
+{
+	int tempNo = Number;
+	int orderNo = order(tempNo);
+	int total =ZERO;
+	int retVal = ZERO;		/* Holds the return value */
+	while ( tempNo != ZERO )
+	{
+		//tempHold = tempNo % DIV_FACTOR;
+		//total = total + power(tempHold,orderNo);
+		total = total + power( (tempNo % DIV_FACTOR),orderNo);
+		printf("-------->>>total:%d\r\n",total);
+		tempNo = tempNo / DIV_FACTOR;
+	}
+		
+	if ( total == Number )
+	{
+		retVal = SUCCESS;
+	}
+	else
+	{
+		retVal = FAILURE;
+	}
+	return retVal;
+
+}
 int power(int base,int num)
 {
 	int result = ONE;
@@ -27,7 +57,7 @@ int order(int num)
 	return count;
 }
 
-int main()
+int main(int argc,char *argv[])
 {
 	int GivenNo = ZERO;	/* Holds the Given number 		   */
 	int tempNo  = ZERO;	/* Holds the temporary number		   */
@@ -35,21 +65,20 @@ int main()
 	int tempHold= ZERO;
 	int total   = ZERO;
 	int index_i = ZERO;
-
-	printf("Enter the number\r\n");
-	scanf("%d",&GivenNo);
 	
-	tempNo = GivenNo;
-	orderNo = order(tempNo);
-	while ( tempNo != ZERO )
+	if ( argc != MAX_ALLOWED_ARGS )
 	{
-		tempHold = tempNo % DIV_FACTOR;
-		total = total + power(tempHold,orderNo);
-		printf("-------->>>total:%d\r\n",total);
-		tempNo = tempNo / DIV_FACTOR;
+		printf("Invalid Argument\n");
+		printf("eg ./armstrong.out (value_no)\n");
+		printf("eg ./armstrong.out 371\n");
+		exit(EXIT_FAILURE);
 	}
-	if ( total == GivenNo )
+
+	GivenNo = atoi ( argv[ARG_1_NO]);
+	
+	if ( checkArmstrong_No(GivenNo) == SUCCESS )
 		printf("GivenNo:%d is Armstrong\r\n",GivenNo);
 	else
 		printf("GivenNo:%d is  Not Armstrong\r\n",GivenNo);
+	return ZERO;
 }
