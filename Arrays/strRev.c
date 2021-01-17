@@ -38,7 +38,7 @@ int main(int argc,char *argv[])
 	{
 		printf("Invalid Arguments\n");
 		printf("Enter string\n");
-		printf("eg:strcpy.out hellotest\n");
+		printf("eg:strRev.out hellotest\n");
 		exit(EXIT_FAILURE);
 	}
 	
