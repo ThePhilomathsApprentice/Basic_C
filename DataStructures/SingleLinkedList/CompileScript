@@ -1,0 +1,7 @@
+#!
+
+gcc -c ListMenuDriven.c -o ListMenuDriven.o
+gcc -c ListFunctions.c -o ListFunctions.o
+
+gcc ListMenuDriven.o ListFunctions.o -o list.out
+rm ListFunctions.o ListMenuDriven.o
